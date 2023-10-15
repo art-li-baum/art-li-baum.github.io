@@ -38,91 +38,149 @@
 						</div>
 					</nav>
 
-				<!-- Wrapper -->
+				<!-- Wrapper-->
 					<section id="wrapper">
 						<header>
 							<div class="inner">
-								<h2>Generic</h2>
-								<p>Phasellus non pulvinar erat. Fusce tincidunt nisl eget ipsum.</p>
+								<h2>C ++ Engine</h2>
+								<p>A two semester long class project on a team. Here I have examples of spawning 10s of thousands of particles </p>
 							</div>
 						</header>
 
 						<!-- Content -->
-							<div class="wrapper">
-								<div class="inner">
+						<div class="wrapper">
+							<div class="inner">
 
-									<h3 class="major">Lorem ipsum dolor</h3>
-									<p>Morbi mattis mi consectetur tortor elementum, varius pellentesque velit convallis. Aenean tincidunt lectus auctor mauris maximus, ac scelerisque ipsum tempor. Duis vulputate ex et ex tincidunt, quis lacinia velit aliquet. Duis non efficitur nisi, id malesuada justo. Maecenas sagittis felis ac sagittis semper. Curabitur purus leo donec vel dolor at arcu tincidunt bibendum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Fusce ut aliquet justo. Donec id neque ipsum. Integer eget ultricies odio. Nam vel ex a orci fringilla tincidunt. Aliquam eleifend ligula non velit accumsan cursus. Etiam ut gravida sapien.</p>
-
-									<p>Vestibulum ultrices risus velit, sit amet blandit massa auctor sit amet. Sed eu lectus sem. Phasellus in odio at ipsum porttitor mollis id vel diam. Praesent sit amet posuere risus, eu faucibus lectus. Vivamus ex ligula, tempus pulvinar ipsum in, auctor porta quam. Proin nec commodo, vel scelerisque nisi scelerisque. Suspendisse id quam vel tortor tincidunt suscipit. Nullam auctor orci eu dolor consectetur, interdum ullamcorper ante tincidunt. Mauris felis nec felis elementum varius.</p>
-
-									<h3 class="major">Vitae phasellus</h3>
-									<p>Cras mattis ante fermentum, malesuada neque vitae, eleifend erat. Phasellus non pulvinar erat. Fusce tincidunt, nisl eget mattis egestas, purus ipsum consequat orci, sit amet lobortis lorem lacus in tellus. Sed ac elementum arcu. Quisque placerat auctor laoreet.</p>
-
-									<section class="features">
-										<article>
-											<a href="#" class="image"><img src="images/pic04.jpg" alt="" /></a>
-											<h3 class="major">Sed feugiat lorem</h3>
-											<p>Lorem ipsum dolor sit amet, consectetur adipiscing vehicula id nulla dignissim dapibus ultrices.</p>
-											<a href="#" class="special">Learn more</a>
-										</article>
-										<article>
-											<a href="#" class="image"><img src="images/pic05.jpg" alt="" /></a>
-											<h3 class="major">Nisl placerat</h3>
-											<p>Lorem ipsum dolor sit amet, consectetur adipiscing vehicula id nulla dignissim dapibus ultrices.</p>
-											<a href="#" class="special">Learn more</a>
-										</article>
-									</section>
-
-								</div>
+								<section>
+									<h3 class="major">Object Pooling</h3>
+									<p>This is <b>bold</b> and this is <strong>strong</strong>. This is <i>italic</i> and this is <em>emphasized</em>.
+										This is <sup>superscript</sup> text and this is <sub>subscript</sub> text.
+										This is <u>underlined</u> and this is code: <code>for (;;) { ... }</code>. Finally, <a href="#">this is a link</a>.</p>
+									<h4>Code Snippet</h4>
+									<pre><code>//Brief: Gets an unused particle from the pool, if not, makes more
+//Author: Li
+//Returns: Reference to the free particle
+Particle& ParticleSystem::GetFreeParticle()
+{
+	unsigned size = _particles.size();
+	if (size > 0 && _activeParticles < size)
+	{
+		//assign a deactivated particle
+		for (unsigned i = 0; i < size; ++i)
+		{
+			if (!_particles[i].IsActive())
+			{
+				return _particles[i];
+			}
+		}
+	}
+	//create and add a new one
+	Particle newParticle = Particle();
+	_particles.push_back(newParticle);
+	return _particles.back();
+}</code></pre>
+								</section>
 							</div>
+						</div>
 
-					</section>
+				<!-- Content -->
+						<div class="wrapper">
+							<div class="inner">
 
-				<!-- Footer -->
-					<section id="footer">
-						<div class="inner">
-							<h2 class="major">Get in touch</h2>
-							<p>Cras mattis ante fermentum, malesuada neque vitae, eleifend erat. Phasellus non pulvinar erat. Fusce tincidunt, nisl eget mattis egestas, purus ipsum consequat orci, sit amet lobortis lorem lacus in tellus. Sed ac elementum arcu. Quisque placerat auctor laoreet.</p>
-							<form method="post" action="#">
-								<div class="fields">
-									<div class="field">
-										<label for="name">Name</label>
-										<input type="text" name="name" id="name" />
-									</div>
-									<div class="field">
-										<label for="email">Email</label>
-										<input type="email" name="email" id="email" />
-									</div>
-									<div class="field">
-										<label for="message">Message</label>
-										<textarea name="message" id="message" rows="4"></textarea>
-									</div>
-								</div>
-								<ul class="actions">
-									<li><input type="submit" value="Send Message" /></li>
-								</ul>
-							</form>
-							<ul class="contact">
-								<li class="icon solid fa-home">
-									Untitled Inc<br />
-									1234 Somewhere Road Suite #2894<br />
-									Nashville, TN 00000-0000
-								</li>
-								<li class="icon solid fa-phone">(000) 000-0000</li>
-								<li class="icon solid fa-envelope"><a href="#">information@untitled.tld</a></li>
-								<li class="icon brands fa-twitter"><a href="#">twitter.com/untitled-tld</a></li>
-								<li class="icon brands fa-facebook-f"><a href="#">facebook.com/untitled-tld</a></li>
-								<li class="icon brands fa-instagram"><a href="#">instagram.com/untitled-tld</a></li>
-							</ul>
-							<ul class="copyright">
-								<li>&copy; Untitled Inc. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-							</ul>
+								<section>
+									<h3 class="major">Pattern Serialization</h3>
+									<p>This is <b>bold</b> and this is <strong>strong</strong>. This is <i>italic</i> and this is <em>emphasized</em>.
+									This is <sup>superscript</sup> text and this is <sub>subscript</sub> text.
+									This is <u>underlined</u> and this is code: <code>for (;;) { ... }</code>. Finally, <a href="#">this is a link</a>.</p>
+									<h4>Code Snippet</h4>
+									<pre><code>void ParticleEmitter::Read(jsonObj data)
+{
+	name = GetParent()->GetName() + GetParent()->GetID();
+	_numParticles = data.getInt("NumberOfParticles");
+	_maxEmitSpeed = data.getFloat("Speed");
+	_maxScale = data.getFloat("Scale") * 32.0f;
+	_loopDelay = data.getFloat("Delay");
+	_depth = data.getInt("Depth");
+	if (_loopDelay > 0)
+	{
+		_looping = true;
+	}
+	if (_playOnAwake)
+	{
+		_wait = true;
+	}
+	//Read what kind of particle it's emmiting with a string member from deserializer
+	if (data.getString("Type") == "Burst")
+	{
+		int partNum = 0;
+
+		if (data.hasObject("MaxParticle") && data.hasObject("MinParticle"))
+		{
+			Random r = Random(data.getInt("MinParticle"), data.getInt("MaxParticle"));
+			partNum = r.getRandomInt();
+		}
+		else
+		{
+			partNum = _numParticles;
+		}
+
+		BurstPattern* BrustP = new BurstPattern(partNum);
+
+		if (data.hasObject("MaxSpeed") && data.hasObject("MinSpeed"))
+		{
+			BrustP->SetSpeeds(data.getFloat("MinSpeed"), data.getFloat("MaxSpeed"));
+		}
+
+		if (data.hasObject("MinLifeSpan") && data.hasObject("MaxLifeSpan"))
+		{
+			BrustP->SetLifeSpan(data.getFloat("MinLifeSpan"), data.getFloat("MaxLifeSpan"));
+		}
+
+		if (data.hasObject("MaxScale") && data.hasObject("MinScale"))
+		{
+			BrustP->SetScale(data.getFloat("MinScale"), data.getFloat("MaxScale"));
+		}
+
+		if (data.hasObject("MaxRot") && data.hasObject("MinRot"))
+		{
+			BrustP->SetRot(data.getFloat("MinRot"), data.getFloat("MaxRot"));
+		}
+
+		if (data.hasObject("MaxRotSpeed") && data.hasObject("MinRotSpeed"))
+		{
+			BrustP->SetRotSpeed(data.getFloat("MinRotSpeed"), data.getFloat("MaxRotSpeed"));
+		}
+
+		_pattern = dynamic_cast(IParticlePattern*)(BrustP);
+
+	}
+	if (data.getString("Type") == "Trail")
+	{
+		_pattern = dynamic_cast(IParticlePattern*)(new TrailPattern());
+		_active = true;
+	}
+	_texture = ParticleSystem::instance()->AddTexture(name,data.getString("texturePath"));
+}
+									</code></pre>
+								</section>
+							</div>
 						</div>
 					</section>
-
+				<!-- Footer -->
+				<section id="footer">
+					<div class="inner">
+						<h2 class="major">Get In Contact!</h2>
+						<ul class="contact">
+							<li class="icon solid fa-envelope"><a href="mailto:art.li.baum@gmail.com">art.li.baum@gmail.com</a></li>
+							<li class="icon brands fa-itch-io"><a href="https://artlibaum.itch.io">artlibaum.itch.io</a></li>
+							<li class="icon brands fa-mastodon"><a href="https://mastodon.gamedev.place/@wander">mastodon.gamedev.place/@wander</a></li>
+						</ul>
+						<ul class="copyright">
+							<li>&copy; Untitled Inc. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+						</ul>
+					</div>
+				</section>
 			</div>
-
 		<!-- Scripts -->
 			<script src="assets/js/jquery.min.js"></script>
 			<script src="assets/js/jquery.scrollex.min.js"></script>
