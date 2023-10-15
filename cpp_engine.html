@@ -4,7 +4,7 @@
 	html5up.net | @ajlkn
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
-<html>
+<html lang="">
 	<head>
 		<title>C++ Engine - C++ Top Down Co-op Mayhem</title>
 		<meta charset="utf-8" />
@@ -43,7 +43,10 @@
 						<header>
 							<div class="inner">
 								<h2>C ++ Engine</h2>
-								<p>A two semester long class project on a team. Here I have examples of spawning 10s of thousands of particles </p>
+								<p>A two semester long class project on a team. Here I have examples of spawning thousands
+									of particles with memory efficient techniques implementing multiple patterns that are
+									editable with JSON parameters and LUA code and are placed with a
+									third party level editor LDTK  </p>
 							</div>
 						</header>
 
@@ -53,9 +56,9 @@
 
 								<section>
 									<h3 class="major">Object Pooling</h3>
-									<p>This is <b>bold</b> and this is <strong>strong</strong>. This is <i>italic</i> and this is <em>emphasized</em>.
-										This is <sup>superscript</sup> text and this is <sub>subscript</sub> text.
-										This is <u>underlined</u> and this is code: <code>for (;;) { ... }</code>. Finally, <a href="#">this is a link</a>.</p>
+									<p>By reusing allocated particle objects, we can quickly spawn hundreds at a time
+										without effecting performance or frame rate </p>
+									<img src="images/gold_swarm_particles2.gif" alt="" />
 									<h4>Code Snippet</h4>
 									<pre><code>//Brief: Gets an unused particle from the pool, if not, makes more
 //Author: Li
@@ -89,9 +92,10 @@ Particle& ParticleSystem::GetFreeParticle()
 
 								<section>
 									<h3 class="major">Pattern Serialization</h3>
-									<p>This is <b>bold</b> and this is <strong>strong</strong>. This is <i>italic</i> and this is <em>emphasized</em>.
-									This is <sup>superscript</sup> text and this is <sub>subscript</sub> text.
-									This is <u>underlined</u> and this is code: <code>for (;;) { ... }</code>. Finally, <a href="#">this is a link</a>.</p>
+									<p>By reading in serialized parameters from JSON, particle patterns can be edited
+										on the fly without rebuilding. These patterns are loaded into emitter
+										components that respond to triggers from LUA behaviour read in from
+										Behaviour components allowing for the same build level customization from designers</p>
 									<h4>Code Snippet</h4>
 									<pre><code>void ParticleEmitter::Read(jsonObj data)
 {
@@ -124,34 +128,34 @@ Particle& ParticleSystem::GetFreeParticle()
 			partNum = _numParticles;
 		}
 
-		BurstPattern* BrustP = new BurstPattern(partNum);
+		BurstPattern* BurstP = new BurstPattern(partNum);
 
 		if (data.hasObject("MaxSpeed") && data.hasObject("MinSpeed"))
 		{
-			BrustP->SetSpeeds(data.getFloat("MinSpeed"), data.getFloat("MaxSpeed"));
+			BurstP->SetSpeeds(data.getFloat("MinSpeed"), data.getFloat("MaxSpeed"));
 		}
 
 		if (data.hasObject("MinLifeSpan") && data.hasObject("MaxLifeSpan"))
 		{
-			BrustP->SetLifeSpan(data.getFloat("MinLifeSpan"), data.getFloat("MaxLifeSpan"));
+			BurstP->SetLifeSpan(data.getFloat("MinLifeSpan"), data.getFloat("MaxLifeSpan"));
 		}
 
 		if (data.hasObject("MaxScale") && data.hasObject("MinScale"))
 		{
-			BrustP->SetScale(data.getFloat("MinScale"), data.getFloat("MaxScale"));
+			BurstP->SetScale(data.getFloat("MinScale"), data.getFloat("MaxScale"));
 		}
 
 		if (data.hasObject("MaxRot") && data.hasObject("MinRot"))
 		{
-			BrustP->SetRot(data.getFloat("MinRot"), data.getFloat("MaxRot"));
+			BurstP->SetRot(data.getFloat("MinRot"), data.getFloat("MaxRot"));
 		}
 
 		if (data.hasObject("MaxRotSpeed") && data.hasObject("MinRotSpeed"))
 		{
-			BrustP->SetRotSpeed(data.getFloat("MinRotSpeed"), data.getFloat("MaxRotSpeed"));
+			BurstP->SetRotSpeed(data.getFloat("MinRotSpeed"), data.getFloat("MaxRotSpeed"));
 		}
 
-		_pattern = dynamic_cast(IParticlePattern*)(BrustP);
+		_pattern = dynamic_cast(IParticlePattern*)(BurstP);
 
 	}
 	if (data.getString("Type") == "Trail")
